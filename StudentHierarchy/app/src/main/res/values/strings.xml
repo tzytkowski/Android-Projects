@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">StudentHierarchy</string>
+    <string name="freshman"><b>Freshman</b></string>
+    <string name="button">Calculate</string>
+    <string name="cost_per_credit_hour">Cost per Credit Hour</string>
+    <string name="name">Name</string>
+    <string name="tuition">Tuition</string>
+    <string name="credit_hours">Credit Hours</string>
+</resources>

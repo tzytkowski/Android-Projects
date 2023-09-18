@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Yahtzee</string>
+    <string name="button">Button</string>
+    <string name="dice_1">dice_1</string>
+    <string name="dice_2">dice_2</string>
+    <string name="dice_3">dice_3</string>
+    <string name="dice_4">dice_4</string>
+    <string name="dice_5">dice_5</string>
+    <string name="yahtzee">Yahtzee</string>
+</resources>

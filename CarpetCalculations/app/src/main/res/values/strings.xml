@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">TipTime</string>
+    <string name="primary_color">Primary color</string>
+    <string name="button">Button</string>
+    <string name="secondary_color">Secondary color</string>
+    <string name="email_icon">email icon</string>
+    <string name="calculate_radius">Calculate Radius</string>
+    <string name="enter_diameter">Enter Diameter</string>
+    <string name="resultTextView">Radius: %.2f\nMax Carpet Length: %.2f</string>
+</resources>
