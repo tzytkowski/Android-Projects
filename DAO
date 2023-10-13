@@ -1,0 +1,79 @@
+//Database class
+
+import android.content.Context
+import androidx.room.Database
+import androidx.room.Room
+import androidx.room.RoomDatabase
+
+/**
+ * Database class with a singleton INSTANCE object.
+ */
+@Database(entities = [Product::class], version = 1, exportSchema = false)
+abstract class ProductRoomDatabase : RoomDatabase() {
+
+    abstract fun productDao(): ProductDao
+
+    companion object {
+        @Volatile
+        private var INSTANCE: ProductRoomDatabase? = null
+
+        fun getDatabase(context: Context): ProductRoomDatabase {
+            return INSTANCE ?: synchronized(this) {
+                val instance = Room.databaseBuilder(
+                    context.applicationContext,
+                    ProductRoomDatabase::class.java,
+                    "product_database"
+                )
+                    .fallbackToDestructiveMigration()
+                    .build()
+                INSTANCE = instance
+                instance
+            }
+        }
+    }
+}
+
+
+
+//Entity data class
+
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "product")
+data class Product(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    val itemName: String,
+    val itemStockNumber: Int,
+    val itemCost: Double,
+    val itemQuantity: Int,
+    val itemStoreNumber: Int,
+    val itemAisleNumber: String
+)
+
+
+
+//DAO Interface
+@Dao
+interface ProductDao {
+
+    @Query("SELECT * FROM product ORDER BY itemStockNumber")
+    fun getAllProducts(): Flow<List<Product>>
+
+    @Query("SELECT * FROM product WHERE itemStockNumber = :stockNumber")
+    fun getProductByStockNumber(stockNumber: Int): Flow<Product?>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertProduct(product: Product)
+
+    @Update
+    suspend fun updateProduct(product: Product)
+
+    @Query("DELETE FROM product WHERE itemStockNumber = :stockNumber")
+    suspend fun deleteProductByStockNumber(stockNumber: Int)
+}
+
+
+
+
