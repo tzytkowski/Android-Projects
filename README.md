@@ -1,2 +1,2 @@
 # Android-Projects
-Aggregation of apps running on Pixel 5 emulator
+Congregation of apps running on Pixel 5 emulator
